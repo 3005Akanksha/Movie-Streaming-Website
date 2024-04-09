@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video play</title>
+    <link rel="stylesheet" href="video.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="" class="logo"><i class="fas fa-infinity"></i>Oldies</a>
+      <nav class="navbar">
+        <a href="index.html" class="active">Home</a>
+        <a href="movies.html">Movies</a>
+        <a href="premium.html">Premium</a>
+        <a href="login.html">Sign In</a>
+      </nav>
+      <div class="icons">
+        <i class="fas fa-bars" id="menu-bars"></i>
+        <i class="fas fa-search" id="search-icon"></i>
+      </div>
+      <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search movies" />
+        <button class="search-btn">Search</button>
+      </div>
+    </header>
+
+    
+   
+      <head>   
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding-top: 44px;
+                padding-left: 77px;
+                
+            }
+            #video-container {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                width: 70%;
+                flex-direction: column;
+           }
+            #video-container video {
+                width: 100%;
+                max-width: 800px;
+                height: 80vh;
+            }
+            #related-suggestions {
+                float: right;
+                width: 30%;
+                padding: 20px;
+                background-color: #f4f4f4;
+            }
+            .suggested-video {
+                cursor: pointer;
+                margin-bottom: 10px;
+            }
+
+            #sugg-video{
+              width: 100%;
+              max-width: 30vw;
+              height: 10vh;
+
+            }
+            #views{
+              color: white;
+              position: relative;
+              font-size: 30px;
+              font-weight: 200;
+              margin-top: 10px;
+            }
+            .main-container{
+              display: flex;
+              flex-direction:row;
+            }
+            .Top-element img{
+              height: 10vh;
+              width: 20vw;
+            }
+            
+        </style>
+    </head>
+    <body>
+      <div class="main-container">
+        <div id="video-container">
+            <video id="video" controls>
+                <source src="Video\Mohabbatein 2000 720p BluRay x264 Hindi AAC - Ozlem.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p id="views">0 views</p>
+            
+          </div>
+
+        </div>
+        
+        <div id="related-suggestions">
+            <h2>Related Suggestions</h2>
+            <div class="suggested-video" data-src="Video\Padmaavat.2018.1080p.BluRay.x264-[YTS.AM].mp4">
+                <a href="">
+                
+                    <button class="Top-element">
+                      <video id="sugg-video" controls>
+                        <source src="Video\Mohabbatein 2000 720p BluRay x264 Hindi AAC - Ozlem.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                  </button>
+                </a>
+                <h3>Suggested Video 1</h3>
+                <p>Description of suggested video 1.</p>
+            </div>
+            <div class="suggested-video" data-src="Video\Padmaavat.2018.1080p.BluRay.x264-[YTS.AM].mp4">
+                <h3>Suggested Video 2</h3>
+                <p>Description of suggested video 2.</p>
+            </div>
+            <div class="suggested-video" data-src="Video\Padmaavat.2018.1080p.BluRay.x264-[YTS.AM].mp4">
+                <h3>Suggested Video 3</h3>
+                <p>Description of suggested video 3.</p>
+            </div>
+            <div class="suggested-video" data-src="Video\Padmaavat.2018.1080p.BluRay.x264-[YTS.AM].mp4">
+                <h3>Suggested Video 4</h3>
+                <p>Description of suggested video 4.</p>
+            </div>
+        </div>
+      </div>
+    
+      <script>
+        const video = document.getElementById('video');
+        const viewsDisplay = document.getElementById('views');
+        let viewsCount = localStorage.getItem('viewsCount') || 0; // Retrieve views count from localStorage
+
+        // Update views count
+        function updateViews() {
+            viewsCount++; // Increment views count
+            viewsDisplay.innerText = `${viewsCount} views`;
+            localStorage.setItem('viewsCount', viewsCount); // Store updated views count in localStorage
+        }
+
+        video.addEventListener('play', updateViews);
+
+        // Add event listener for suggested videos
+        const suggestedVideos = document.querySelectorAll('.suggested-video');
+        suggestedVideos.forEach(video => {
+            video.addEventListener('click', () => {
+                const src = video.getAttribute('data-src');
+                video.src = src;
+                video.play();
+            });
+        });
+    </script>
+    
+  </body>
+</html>
